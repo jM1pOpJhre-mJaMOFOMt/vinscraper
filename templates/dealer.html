@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Dealer</h6>
+        <div>
+            {{ dealer.dealer_code }}
+        </div>
+        <div data-formatter="formatAddress">
+			{% autoescape false %}
+				{{ dealer.address | replace("\n", "<br/>") }}
+			{% endautoescape %}
+        </div>
+        <div class="table-responsive">
+            <table id="table" data-toggle="table" data-classes="table table-no-bordered table-hover table-sm"
+                   data-show-columns="true"
+                   data-checkbox="true"
+                   data-search="true"
+                   data-show-toggle="true"
+                   data-pagination="true"
+                   data-sort-name="serial_number"
+                   data-sort-order="desc"
+                   data-id-field="id"
+                   data-filter-control="true"
+                   data-click-to-select="true"
+            >
+                <thead>
+                <tr>
+                    <th data-field="serial" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="search...">Serial</th>
+                    <th data-field="vin" data-filter-control="input" data-formatter="formatVIN" data-filter-control-placeholder="search...">VIN</th>
+                    <th data-field="model" data-filter-control="select" data-sortable="true" data-filter-control-placeholder="filter...">Model</th>
+                    <th data-field="engine" data-filter-control="input" data-sortable="true" data-filter-control-placeholder="search...">Engine</th>
+					<th data-field="port_of_entry" data-filter-control="select" data-sortable="true" data-filter-control-placeholder="filter...">Port of Entry</th>
+					<th data-field="ext_color" data-filter-control="select" data-sortable="true" data-filter-control-placeholder="filter...">Ext Color</th>
+                    <th data-field="int_color" data-filter-control="select" data-sortable="true" data-filter-control-placeholder="filter...">Int Color</th>
+                    <th data-field="transport" data-filter-control="select" data-sortable="true" data-filter-control-placeholder="filter...">Transport</th>
+                    <th data-field="sold_to" data-filter-control="input" data-sortable="true" data-formatter="formatDealer" data-filter-control-placeholder="search...">Dealer</th>
+					<th data-field="shipped_to" data-filter-control="input" data-sortable="true" data-formatter="formatDealer" data-filter-control-placeholder="search...">Shipped To</th>
+					<th data-field="price" data-sortable="true" data-filter-control="input" data-filter-control-placeholder="search...">Price</th>
+                    <th data-field="scraped_date" data-sortable="true" data-filter-control="input" data-formatter="formatDate" data-filter-control-placeholder="search...">Scraped On</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for car in cars %}
+                    <tr>
+                        <td>{{ car.serial }}</td>
+                        <td>{{ car.vin }}</td>
+                        <td>{{ car.model }}</td>
+                        <td>{{ car.engine }}</td>
+						<td>{{ car.port_of_entry }}</td>
+                        <td>{{ car.ext_color }}</td>
+                        <td>{{ car.int_color }}</td>
+						<td>{{ car.transport }}</td>
+                        <td>{{ car.sold_to }}</td>
+						<td>{{ car.shipped_to }}</td>
+						<td>{{ car.price }}</td>
+                        <td>{{ car.scraped_date }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

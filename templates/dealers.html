@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div class="table-responsive">
+            <table id="table" data-toggle="table" data-classes="table table-no-bordered table-hover table-sm"
+                   data-show-columns="true"
+                   data-search="true"
+                   data-pagination="true"
+                   data-sort-name="id"
+                   data-click-to-select="true"
+                   data-filter-control="true"
+            >
+                <thead>
+                <tr>
+                    <th data-field="dealer_code" data-filter-control="select" data-formatter="formatDealer">Code</th>
+                    <th data-field="address" data-filter-control="input" data-sortable="true" data-formatter="formatAddress">Address</th>
+                    <th data-field="car_count" data-sortable="true">Total Cars</th>
+                </tr>
+                </thead>
+                <tbody>
+				{% for dealer in dealers %}
+                    <tr>
+						<td>{{ dealer.dealer_code }}</td>
+                        <td>{{ dealer.address }}</td>
+						<td>{{ dealer.car_count }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
