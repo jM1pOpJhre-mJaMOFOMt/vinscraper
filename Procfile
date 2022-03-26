@@ -1,2 +1,2 @@
 web: python app.py
-workers: python background_processor.py
+workers: python background.py
