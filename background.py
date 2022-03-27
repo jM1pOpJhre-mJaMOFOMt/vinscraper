@@ -90,6 +90,7 @@ while True:
     if consecutive_fails >= 1000:
         serial = 0
         consecutive_fails = 0
-    serial += 1
+    else:
+        serial += 1
 
     
