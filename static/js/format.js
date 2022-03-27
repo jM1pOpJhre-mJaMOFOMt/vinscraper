@@ -7,7 +7,7 @@ function formatVIN(value, row, index) {
 }
 
 function formatDate(value, row, index) {
-    return moment(value).format('L');
+    return "<span title='" + moment(value).format('lll') + "'>" + moment(value).format('L') + "</span>";
 }
 
 function formatAddress(value, row, index) {
